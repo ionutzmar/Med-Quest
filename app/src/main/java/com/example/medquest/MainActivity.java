@@ -1,6 +1,7 @@
 package com.example.medquest;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -144,5 +145,18 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(getIntent());
                     }
                 });
+    }
+
+    public void callUs(View view) {
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + "0771234567"));
+        startActivity(intent);
+    }
+
+    public void emailUs(View view) {
+        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                "mailto","ionutmarius3141@gmail.com", null));
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Vreau sa ma alatur echipei");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "Text caz clinic");
+        startActivity(Intent.createChooser(emailIntent, "Send email..."));
     }
 }
